@@ -163,3 +163,9 @@ _override.tf.json
 # OS files
 .DS_Store
 Thumbs.db
+
+# project documentation
+/docs/
+
+# cursor files
+.cursor/
