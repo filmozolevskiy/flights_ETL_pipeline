@@ -1,0 +1,38 @@
+---
+description: Mandatory workflow standards for AI interaction, task tracking, and version control.
+globs: "**/*"
+---
+# Workflow & Project Standards
+
+## 1. WorkFlow (Global)
+- **Create a list of steps**: Before executing a linear issue break it to small tasks and create a list. 
+- **Explain steps**: Before executing each task in the list, explain what/why/how you are going to do.
+- **Approve steps**: After explanation, request user's approval to execute a step. Don't execute a step without this approval.  
+- **Post execution**: After execution, explain what was done and request the approval for the next step.  
+- **Teach**: Assume user is a junior engineer. Use clear, pragmatic examples.
+- **Clarify**: If requirements are ambiguous, STOP and ask. Do not guess.
+- **Limit Retries**: NEVER execute the exact same terminal command more than 2 times in a row. If a command produces very large output that you cannot parse in one go, use tools like `grep`, `tail`, `head`, or redirection to files instead of repeatedly running the command to "see more".
+
+## 2. Project Tracking (Linear Standards)
+All linear tasks should have:
+- A brief explanation of planned change
+- Short steps to take
+- Short explanation of why these changes needed
+- Definition of done 
+- QA strategy 
+- Edge cases coverage 
+- Unit/integration tests if relevant
+
+- **Docs**: Create/Update documentation in Linear issues, NOT in the repo (except strictly required config/PRD updates).
+
+## 3. Tooling Registry
+Do NOT create new scripts without first checking the `scripts/` folder.
+- If a script exists but lacks a feature, **enhance it**.
+- Only create a new script if the functionality is completely distinct.
+- **MCP Centrality**: Prioritize MCP services over other methods of communication (GitHub, DigitalOcean, Linear).
+
+## 4. Version Control
+- **NEVER** commit to main directly.
+- **ALWAYS** create PRs for merging to main.
+- **Verify**: Always run lint/test/build before pushing to remote.
+- **Atomic Commits**: One logical change per commit.

@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "RapidAPI Hub - Google Flights": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://mcp.rapidapi.com",
+        "--header",
+        "x-api-host: google-flights2.p.rapidapi.com",
+        "--header",
+        "x-api-key: 4240a377acmshc77976807a05b93p16a2e1jsne44333cfba96"
+      ]
+    }
+  }
+}
