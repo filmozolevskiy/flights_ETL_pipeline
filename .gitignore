@@ -145,6 +145,7 @@ cython_debug/
 
 # Terraform
 .terraform/
+terraform/backend.hcl
 *.tfstate
 *.tfstate.backup
 *.tfvars
@@ -153,7 +154,6 @@ override.tf
 override.tf.json
 _override.tf
 _override.tf.json
-.terraform.lock.hcl
 
 # IDEs
 .vscode/
