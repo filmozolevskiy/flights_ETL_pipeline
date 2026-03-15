@@ -44,6 +44,8 @@ Terraform (every run)
 
 1. **Bootstrap (run once):**
    ```bash
+   # Optional: set TF_VAR_aws_region to override default us-east-1
+   export TF_VAR_aws_region=us-east-1
    ./scripts/bootstrap_terraform_backend.sh
    ```
 
@@ -66,6 +68,12 @@ Terraform (every run)
 - **S3 bucket:** `flights-terraform-state-<aws-account-id>` (globally unique via account ID)
 - **DynamoDB table:** `terraform-state-lock`
 - **State key:** `terraform.tfstate`
+
+---
+
+## Region (single source of truth)
+
+- **TF_VAR_aws_region** — Used by both bootstrap script and Terraform. Precedence: env var > positional arg (bootstrap only) > `us-east-1`.
 
 ---
 
