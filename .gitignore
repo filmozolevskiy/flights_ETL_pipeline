@@ -164,5 +164,5 @@ _override.tf.json
 .DS_Store
 Thumbs.db
 
-# project documentation
-/docs/
+# project documentation (exclude build artifacts only; keep .md docs)
+/docs/_build/
