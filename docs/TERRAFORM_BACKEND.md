@@ -12,14 +12,14 @@ We use **remote state** stored in S3 with **state locking** via DynamoDB.
 
 ## Rationale
 
-| Factor | Reasoning |
-|--------|-----------|
-| **PRD alignment** | PRD states: "Terraform state should be stored remotely (e.g., in an S3 bucket) to allow for collaboration and consistency." |
-| **State locking** | DynamoDB prevents concurrent `terraform apply` runs from corrupting state. |
-| **Collaboration** | Remote state allows multiple developers and CI/CD to use the same state. |
-| **Durability** | S3 is durable; state survives local machine loss. |
-| **Cost** | S3 and DynamoDB free tier cover typical usage. |
-| **Verification** | S3 and DynamoDB access were verified per Task 1.4 prerequisites. |
+| Factor            | Reasoning                                                                                           |
+|-------------------|-----------------------------------------------------------------------------------------------------|
+| **PRD alignment** | PRD states: "Terraform state should be stored remotely to allow for collaboration and consistency." |
+| **State locking** | DynamoDB prevents concurrent `terraform apply` runs from corrupting state.                          |
+| **Collaboration** | Remote state allows multiple developers and CI/CD to use the same state.                            |
+| **Durability**    | S3 is durable; state survives local machine loss.                                                   |
+| **Cost**          | S3 and DynamoDB free tier cover typical usage.                                                      |
+| **Verification**  | S3 and DynamoDB access were verified per Task 1.4 prerequisites.                                    |
 
 ---
 
@@ -71,8 +71,8 @@ Terraform (every run)
 
 ## Alternatives Considered
 
-| Option | Rejected because |
-|--------|------------------|
-| **Local state** | No collaboration, state loss risk, no locking. |
-| **Git for state** | No locking, secrets risk, merge conflicts. |
+| Option                    | Rejected because                                        |
+|---------------------------|---------------------------------------------------------|
+| **Local state**           | No collaboration, state loss risk, no locking.          |
+| **Git for state**         | No locking, secrets risk, merge conflicts.              |
 | **S3 only (no DynamoDB)** | No state locking; concurrent applies can corrupt state. |
