@@ -2,11 +2,12 @@
 # Bootstrap Terraform backend: S3 bucket + DynamoDB table for state storage and locking.
 # Run once before first 'terraform init'. Requires AWS CLI configured.
 #
+# Region: TF_VAR_aws_region env var (preferred) > positional arg > us-east-1
 # Usage: ./scripts/bootstrap_terraform_backend.sh [region]
 
 set -e
 
-REGION="${1:-us-east-1}"
+REGION="${TF_VAR_aws_region:-${1:-us-east-1}}"
 BUCKET_PREFIX="flights-terraform-state"
 DYNAMODB_TABLE="terraform-state-lock"
 
