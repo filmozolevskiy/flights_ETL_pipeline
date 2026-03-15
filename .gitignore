@@ -165,4 +165,7 @@ _override.tf.json
 Thumbs.db
 
 # project documentation (exclude build artifacts only; keep .md docs)
-/docs/_build/
+/docs
+
+# Postman environment files (may contain API keys)
+*.postman_environment.json

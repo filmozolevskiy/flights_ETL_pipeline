@@ -1,0 +1,107 @@
+{
+  "info": {
+    "_postman_id": "c96efd45-7d58-46f1-b053-197fe6609eeb",
+    "name": "Google Flights API (RapidAPI)",
+    "description": "Collection for the RapidAPI Google Flights API. Used to fetch sample flight search responses for the Flights ETL Pipeline Bronze layer.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "27428525"
+  },
+  "item": [
+    {
+      "name": "Search Flights",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-RapidAPI-Key",
+            "value": "{{rapidapi_key}}",
+            "type": "text"
+          },
+          {
+            "key": "X-RapidAPI-Host",
+            "value": "{{rapidapi_host}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://{{rapidapi_host}}/api/v1/searchFlights?departure_id={{departure_id}}&arrival_id={{arrival_id}}&outbound_date={{outbound_date}}&adults=1&currency=USD&country_code=US&language_code=en-US&search_type=best&travel_class=ECONOMY",
+          "protocol": "https",
+          "host": [
+            "{{rapidapi_host}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "searchFlights"
+          ],
+          "query": [
+            {
+              "key": "departure_id",
+              "value": "{{departure_id}}"
+            },
+            {
+              "key": "arrival_id",
+              "value": "{{arrival_id}}"
+            },
+            {
+              "key": "outbound_date",
+              "value": "{{outbound_date}}"
+            },
+            {
+              "key": "adults",
+              "value": "1"
+            },
+            {
+              "key": "currency",
+              "value": "USD"
+            },
+            {
+              "key": "country_code",
+              "value": "US"
+            },
+            {
+              "key": "language_code",
+              "value": "en-US"
+            },
+            {
+              "key": "search_type",
+              "value": "best"
+            },
+            {
+              "key": "travel_class",
+              "value": "ECONOMY"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "rapidapi_host",
+      "value": "google-flights-api.p.rapidapi.com"
+    },
+    {
+      "key": "rapidapi_key",
+      "value": "YOUR_RAPIDAPI_KEY"
+    },
+    {
+      "key": "departure_id",
+      "value": "LAX"
+    },
+    {
+      "key": "arrival_id",
+      "value": "JFK"
+    },
+    {
+      "key": "outbound_date",
+      "value": "2026-04-15"
+    }
+  ]
+}
