@@ -36,12 +36,12 @@ MAX_RETRIES = int(os.getenv("API_MAX_RETRIES", "5"))
 
 def _is_retriable_http_error(exc: BaseException) -> bool:
     """Return True for 429 or 5xx, which are worth retrying."""
-    if not isinstance(exc, requests.HTTPError):
-        return False
-    resp = getattr(exc, "response", None)
-    if resp is None:
-        return False
-    return resp.status_code == 429 or resp.status_code >= 500
+    if isinstance(exc, requests.HTTPError):
+        resp = getattr(exc, "response", None)
+        if resp is None:
+            return False
+        return resp.status_code == 429 or resp.status_code >= 500
+    return isinstance(exc, (requests.ConnectionError, requests.Timeout))
 
 
 def _log_retry(retry_state: Any) -> None:
@@ -118,7 +118,6 @@ def fetch_flights(
         "Fetching flights %s -> %s on %s", departure_id, arrival_id, outbound_date
     )
     resp = _request_with_retry(url, headers, params)
-    resp.raise_for_status()
 
     data = resp.json()
     if not data.get("status"):
