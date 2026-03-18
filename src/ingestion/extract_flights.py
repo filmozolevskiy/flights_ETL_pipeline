@@ -10,15 +10,19 @@ Requires env vars: RAPIDAPI_KEY. Optional: RAPIDAPI_HOST, AWS_PROFILE.
 import json
 import logging
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
+
+from dotenv import load_dotenv
 
 import boto3
 import requests
 
+load_dotenv()
+
 logger = logging.getLogger(__name__)
 
-RAPIDAPI_HOST = os.getenv("RAPIDAPI_HOST", "google-flights-api.p.rapidapi.com")
+RAPIDAPI_HOST = os.getenv("RAPIDAPI_HOST", "google-flights2.p.rapidapi.com")
 BRONZE_BUCKET = os.getenv("BRONZE_BUCKET", "flights-bronze-raw")
 REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "30"))
 
@@ -95,7 +99,7 @@ def parse_partition_from_date(outbound_date: str) -> tuple[str, str, str]:
 def build_s3_key(outbound_date: str) -> str:
     """Build S3 object key: year=YYYY/month=MM/day=DD/flight_data_TIMESTAMP.json."""
     year, month, day = parse_partition_from_date(outbound_date)
-    ts = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
+    ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     return f"year={year}/month={month}/day={day}/flight_data_{ts}.json"
 
 
