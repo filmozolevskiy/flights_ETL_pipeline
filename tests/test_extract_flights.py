@@ -34,8 +34,11 @@ class TestRetriableError:
         exc = requests.HTTPError(response=resp)
         assert _is_retriable_http_error(exc) is False
 
-    def test_connection_error_is_not_retriable(self) -> None:
-        assert _is_retriable_http_error(requests.ConnectionError()) is False
+    def test_connection_error_is_retriable(self) -> None:
+        assert _is_retriable_http_error(requests.ConnectionError()) is True
+
+    def test_timeout_is_retriable(self) -> None:
+        assert _is_retriable_http_error(requests.Timeout()) is True
 
 
 class TestFetchFlightsRetry:
