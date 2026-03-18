@@ -14,6 +14,12 @@ from datetime import datetime, timezone
 from typing import Any
 
 from dotenv import load_dotenv
+from tenacity import (
+    retry,
+    retry_if_exception,
+    stop_after_attempt,
+    wait_exponential,
+)
 
 import boto3
 import requests
@@ -25,6 +31,43 @@ logger = logging.getLogger(__name__)
 RAPIDAPI_HOST = os.getenv("RAPIDAPI_HOST", "google-flights2.p.rapidapi.com")
 BRONZE_BUCKET = os.getenv("BRONZE_BUCKET", "flights-bronze-raw")
 REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "30"))
+MAX_RETRIES = int(os.getenv("API_MAX_RETRIES", "5"))
+
+
+def _is_retriable_http_error(exc: BaseException) -> bool:
+    """Return True for 429 or 5xx, which are worth retrying."""
+    if not isinstance(exc, requests.HTTPError):
+        return False
+    resp = getattr(exc, "response", None)
+    if resp is None:
+        return False
+    return resp.status_code == 429 or resp.status_code >= 500
+
+
+def _log_retry(retry_state: Any) -> None:
+    """Log each retry attempt."""
+    exc = retry_state.outcome.exception() if retry_state.outcome else None
+    status = getattr(getattr(exc, "response", None), "status_code", None)
+    logger.warning(
+        "API request failed (attempt %s, status=%s), retrying",
+        retry_state.attempt_number,
+        status,
+    )
+
+
+@retry(
+    retry=retry_if_exception(_is_retriable_http_error),
+    stop=stop_after_attempt(MAX_RETRIES),
+    wait=wait_exponential(multiplier=1, min=2, max=60),
+    before_sleep=_log_retry,
+)
+def _request_with_retry(
+    url: str, headers: dict[str, str], params: dict[str, str]
+) -> requests.Response:
+    """Perform HTTP GET with retries on 429 and 5xx."""
+    resp = requests.get(url, headers=headers, params=params, timeout=REQUEST_TIMEOUT)
+    resp.raise_for_status()
+    return resp
 
 
 def fetch_flights(
@@ -74,7 +117,7 @@ def fetch_flights(
     logger.info(
         "Fetching flights %s -> %s on %s", departure_id, arrival_id, outbound_date
     )
-    resp = requests.get(url, headers=headers, params=params, timeout=REQUEST_TIMEOUT)
+    resp = _request_with_retry(url, headers, params)
     resp.raise_for_status()
 
     data = resp.json()
