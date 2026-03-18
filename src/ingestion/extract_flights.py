@@ -31,7 +31,7 @@ logger = logging.getLogger(__name__)
 RAPIDAPI_HOST = os.getenv("RAPIDAPI_HOST", "google-flights2.p.rapidapi.com")
 BRONZE_BUCKET = os.getenv("BRONZE_BUCKET", "flights-bronze-raw")
 REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "30"))
-MAX_RETRIES = int(os.getenv("API_MAX_RETRIES", "5"))
+MAX_ATTEMPTS = int(os.getenv("API_MAX_ATTEMPTS", "5"))
 
 
 def _is_retriable_http_error(exc: BaseException) -> bool:
@@ -57,7 +57,7 @@ def _log_retry(retry_state: Any) -> None:
 
 @retry(
     retry=retry_if_exception(_is_retriable_http_error),
-    stop=stop_after_attempt(MAX_RETRIES),
+    stop=stop_after_attempt(MAX_ATTEMPTS),
     wait=wait_exponential(multiplier=1, min=2, max=60),
     before_sleep=_log_retry,
 )
