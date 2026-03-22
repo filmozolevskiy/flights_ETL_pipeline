@@ -162,7 +162,7 @@ def upload_to_s3(
         Full S3 URI of the uploaded object.
     """
     bkt = bucket or os.getenv("BRONZE_BUCKET", BRONZE_BUCKET)
-    body = json.dumps(data, indent=2).encode("utf-8")
+    body = json.dumps(data, separators=(",", ":")).encode("utf-8")
 
     client = boto3.client("s3")
     client.put_object(Bucket=bkt, Key=s3_key, Body=body, ContentType="application/json")
