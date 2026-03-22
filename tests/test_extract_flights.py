@@ -95,7 +95,7 @@ class TestUploadToS3:
             "year=2026/month=04/day=15/flight_data_20260317T120000Z.json"
         )
         assert call_kwargs["ContentType"] == "application/json"
-        assert b'"status": true' in call_kwargs["Body"]
+        assert b'"status":true' in call_kwargs["Body"]
         assert uri == (
             "s3://test-bucket/year=2026/month=04/day=15/"
             "flight_data_20260317T120000Z.json"
@@ -143,7 +143,7 @@ class TestExtractAndUpload:
         assert "flight_data_" in call_kwargs["Key"]
         assert call_kwargs["Key"].endswith(".json")
         body = call_kwargs["Body"].decode("utf-8")
-        assert '"status": true' in body
-        assert '"id": "f1"' in body
+        assert '"status":true' in body
+        assert '"id":"f1"' in body
         assert uri.startswith("s3://")
         assert uri.endswith(".json")
