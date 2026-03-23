@@ -1,8 +1,9 @@
 """
 Extract flight data from RapidAPI Google Flights and upload to Bronze S3.
 
-Fetches raw JSON from the API and stores it in s3://flights-bronze-raw/
-with Hive-style partitioning: year=YYYY/month=MM/day=DD/flight_data_TIMESTAMP.json
+Fetches raw JSON from the API and stores it in the Bronze S3 bucket (e.g.
+s3://flights-bronze-raw-dev/) configured via BRONZE_BUCKET, with Hive-style
+partitioning: year=YYYY/month=MM/day=DD/flight_data_TIMESTAMP.json
 
 Requires env vars: RAPIDAPI_KEY. Optional: RAPIDAPI_HOST, AWS_PROFILE.
 """
@@ -29,7 +30,7 @@ load_dotenv()
 logger = logging.getLogger(__name__)
 
 RAPIDAPI_HOST = os.getenv("RAPIDAPI_HOST", "google-flights2.p.rapidapi.com")
-BRONZE_BUCKET = os.getenv("BRONZE_BUCKET", "flights-bronze-raw")
+BRONZE_BUCKET = os.getenv("BRONZE_BUCKET", "flights-bronze-raw-dev")
 REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "30"))
 MAX_ATTEMPTS = int(os.getenv("API_MAX_ATTEMPTS", "5"))
 
@@ -156,7 +157,7 @@ def upload_to_s3(
     Args:
         data: JSON-serializable response from the API.
         s3_key: Full S3 object key (including partition path).
-        bucket: S3 bucket name. Defaults to BRONZE_BUCKET env var or flights-bronze-raw.
+        bucket: S3 bucket name. Defaults to BRONZE_BUCKET env var or flights-bronze-raw-dev.
 
     Returns:
         Full S3 URI of the uploaded object.

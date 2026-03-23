@@ -1,25 +1,24 @@
-# Athena workgroup and Glue catalog for Bronze data exploration
-
 resource "aws_athena_workgroup" "exploration" {
-  name = "flights-exploration"
+  name = "${var.project_name}-exploration-${var.environment}"
 
   configuration {
     enforce_workgroup_configuration    = false
     publish_cloudwatch_metrics_enabled = true
 
     result_configuration {
-      output_location = "s3://${aws_s3_bucket.pipeline_logs.id}/athena-results/"
+      output_location = "s3://${var.pipeline_logs_bucket_id}/athena-results/"
     }
   }
 
   tags = {
-    Purpose = "bronze-exploration"
+    Purpose     = "bronze-exploration"
+    Environment = var.environment
   }
 }
 
 resource "aws_glue_catalog_database" "flights_raw" {
-  name        = "flights_raw"
-  description = "Database for raw Bronze layer flight data"
+  name        = "${var.project_name}_raw_${var.environment}"
+  description = "Database for raw Bronze layer flight data (${var.environment})"
 }
 
 resource "aws_glue_catalog_table" "bronze_flights" {
@@ -48,7 +47,7 @@ resource "aws_glue_catalog_table" "bronze_flights" {
   }
 
   storage_descriptor {
-    location      = "s3://${aws_s3_bucket.bronze_raw.id}/"
+    location      = "s3://${var.bronze_bucket_id}/"
     input_format  = "org.apache.hadoop.mapred.TextInputFormat"
     output_format = "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat"
 
@@ -57,8 +56,8 @@ resource "aws_glue_catalog_table" "bronze_flights" {
       serialization_library = "org.openx.data.jsonserde.JsonSerDe"
 
       parameters = {
-        "ignore.malformed"       = "true"
-        "mapping.api_timestamp"   = "timestamp"
+        "ignore.malformed"      = "true"
+        "mapping.api_timestamp" = "timestamp"
       }
     }
 

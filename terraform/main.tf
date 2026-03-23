@@ -1,28 +1,23 @@
-# Core S3 buckets for the flights data lakehouse
-
-resource "aws_s3_bucket" "bronze_raw" {
-  bucket = "flights-bronze-raw"
-
-  tags = {
-    Layer   = "bronze"
-    Purpose = "raw-json"
-  }
+locals {
+  environments = toset(var.environments)
 }
 
-resource "aws_s3_bucket" "silver_cleaned" {
-  bucket = "flights-silver-cleaned"
+module "s3_data_lake" {
+  source = "./modules/s3_data_lake"
 
-  tags = {
-    Layer   = "silver"
-    Purpose = "cleaned-parquet"
-  }
+  for_each = local.environments
+
+  project_name = var.project_name
+  environment  = each.key
 }
 
-resource "aws_s3_bucket" "pipeline_logs" {
-  bucket = "flights-pipeline-logs"
+module "athena_glue" {
+  source = "./modules/athena_glue"
 
-  tags = {
-    Layer   = "logs"
-    Purpose = "pipeline-logs"
-  }
+  for_each = local.environments
+
+  project_name            = var.project_name
+  environment             = each.key
+  bronze_bucket_id        = module.s3_data_lake[each.key].bronze_bucket_id
+  pipeline_logs_bucket_id = module.s3_data_lake[each.key].pipeline_logs_bucket_id
 }
