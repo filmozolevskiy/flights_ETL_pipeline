@@ -16,6 +16,12 @@ python-dotenv>=1.0.0
 # Spark for data processing (Silver/Gold layers)
 pyspark>=3.5.0
 
+# Scraper dependencies
+selectolax>=0.3.33
+protobuf>=6.31.1
+primp>=1.0.0
+typing-extensions
+
 # Testing
 pytest>=8.0.0
 
