@@ -31,6 +31,9 @@ BRONZE_BUCKET = os.getenv("BRONZE_BUCKET", "flights-bronze-raw-dev")
 BRIGHT_DATA_API_KEY = os.getenv("BRIGHT_DATA_API_KEY")
 BRIGHT_DATA_SERP_ZONE = os.getenv("BRIGHT_DATA_SERP_ZONE", "serp_api1")
 
+def get_bright_data_api_key():
+    return os.getenv("BRIGHT_DATA_API_KEY")
+
 def fetch_flights_with_scraper(
     departure_id: str,
     arrival_id: str,
@@ -42,7 +45,8 @@ def fetch_flights_with_scraper(
     """
     Fetch flight search results using the fast-flights scraper and Bright Data.
     """
-    if not BRIGHT_DATA_API_KEY:
+    api_key = get_bright_data_api_key()
+    if not api_key:
         raise ValueError("BRIGHT_DATA_API_KEY must be set in environment")
 
     # 1. Create the query
@@ -57,7 +61,7 @@ def fetch_flights_with_scraper(
 
     # 2. Initialize Bright Data integration
     bd_integration = BrightData(
-        api_key=BRIGHT_DATA_API_KEY,
+        api_key=api_key,
         zone=BRIGHT_DATA_SERP_ZONE
     )
 

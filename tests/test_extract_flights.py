@@ -41,9 +41,9 @@ class TestFetchFlightsWithScraper:
             mock_get.assert_called_once()
 
     def test_raises_error_if_api_key_missing(self, monkeypatch: pytest.MonkeyPatch) -> None:
-        with patch("src.ingestion.extract_flights.BRIGHT_DATA_API_KEY", None):
-            with pytest.raises(ValueError, match="BRIGHT_DATA_API_KEY must be set"):
-                fetch_flights_with_scraper("LAX", "JFK", "2026-04-15")
+        monkeypatch.delenv("BRIGHT_DATA_API_KEY", raising=False)
+        with pytest.raises(ValueError, match="BRIGHT_DATA_API_KEY must be set"):
+            fetch_flights_with_scraper("LAX", "JFK", "2026-04-15")
 
 
 class TestUploadToS3:
