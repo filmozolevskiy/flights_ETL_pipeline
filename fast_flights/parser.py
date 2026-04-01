@@ -80,8 +80,6 @@ def parse_js(js: str):
             to_airport = Airport(code=single_flight[6], name=single_flight[5])
             
             # Times and dates
-            departure_time = single_flight[8]
-            departure_date = single_flight[20]
             
             # Convert to ISO format strings
             def format_dt(date_list, time_list):
@@ -97,7 +95,7 @@ def parse_js(js: str):
                     return SimpleDatetime(
                         timestamp=dt.isoformat()
                     )
-                except Exception as e:
+                except Exception:
                     return SimpleDatetime(
                         timestamp=""
                     )

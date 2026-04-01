@@ -2,29 +2,26 @@
 Extract flight data using fast-flights scraper with Bright Data and upload to Bronze S3.
 """
 
+import json
+import logging
+import os
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
+
+import boto3
+from dotenv import load_dotenv
 
 # Add project root to sys.path to ensure local fast_flights package is found
 project_root = str(Path(__file__).parents[2])
 if project_root not in sys.path:
     sys.path.append(project_root)
 
-import json
-import logging
-import os
-from datetime import datetime, timezone
-from typing import Any
-from dataclasses import asdict
-
-from dotenv import load_dotenv
-import boto3
-
 # Import local scraper
-from fast_flights import FlightQuery, Passengers, create_query, get_flights
-from fast_flights.model import Flights, SingleFlight
-from fast_flights.integrations.bright_data import BrightData
-from fast_flights.types import SeatType, TripType
+from fast_flights import FlightQuery, Passengers, create_query, get_flights  # noqa: E402
+from fast_flights.model import Flights  # noqa: E402
+from fast_flights.integrations.bright_data import BrightData  # noqa: E402
+from fast_flights.types import SeatType, TripType  # noqa: E402
 
 load_dotenv()
 

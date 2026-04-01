@@ -2,140 +2,97 @@
 
 **Linear:** [JOB-92 — Task 3.2](https://linear.app/job-search-assistant/issue/JOB-92/task-32-perform-initial-data-profiling-and-schema-mapping)  
 **Environment profiled:** `dev` (Glue `flights_raw_dev`, table `bronze_flights`)  
-**Profile run:** 2026-03-23 (Athena engine 3, workgroup `flights-exploration-dev`)
+**Profile run:** 2026-04-01 (Athena engine 3, workgroup `flights-exploration-dev`)
 
 ---
 
 ## 1. Executive summary
 
-Bronze holds **one JSON file per ingestion run** under Hive partitions `year=/month=/day=`. Profiling used **Athena** against the Glue-backed external table from Task 3.1.
+Bronze holds **one JSON file per ingestion run** under Hive partitions `year=/month=/day=`. The project has transitioned from RapidAPI to a **custom scraper (fast-flights)**, which has introduced a new unified JSON structure.
 
 | Metric | Value (dev, snapshot) |
 |--------|------------------------|
-| Bronze rows (files) | 3231 |
+| Bronze rows (files) | 3,231 |
 | Distinct partition paths | 13 (`year/month/day` groups) |
-| Root-level nulls (`status`, `message`, `api_timestamp`, `data`) | 0 (on valid partitions) |
-| Rows with empty `topFlights` / `otherFlights` arrays | 0 (on valid partitions) |
-| `topFlights` rows (exploded) | ~30 per file |
-| `otherFlights` rows (exploded) | ~180 per file |
-| Null `price` (exploded `topFlights` / `otherFlights`) | 0 |
-| Null or empty `booking_token` (exploded `topFlights`) | 0 |
+| Root-level nulls (`status`, `message`, `timestamp`, `data`) | 0 (on latest format) |
+| Itineraries per file (average) | ~30 |
+| Null `price` in itineraries | 0 |
+| Null `departure_time` | 0 |
 
-**Key finding for Silver:** The Glue column type for `data` lists only a **subset** of fields per itinerary (see §3). Nested structures such as **`flights` (legs/segments)**, **`duration`**, **`layovers`**, **`bags`**, **`carbon_emissions`**, and **`delay`** exist in the **raw JSON on S3** (see `ref/sample_api_response.json` and `ref/data_dictionary_bronze.md`) but are **not exposed** in the current Athena `struct` definition. **Silver processing in Spark should read the full JSON from S3** (or evolve the Glue JSON schema) so leg-level flattening is possible.
-
-**Identifier note:** The API does not expose a field named `itinerary_id`. For deduplication and keys, use **`booking_token`** (opaque string per itinerary option) and/or a **surrogate key** (e.g., hash of `booking_token` + `source_file` + partition).
+**Key finding for Silver:** The data format has evolved. Latest files (e.g., July 2026 partitions) use a flat `data.itineraries` array, while older files used `data.itineraries.topFlights`. Silver processing in Spark must handle this schema evolution by checking for the existence of nested fields or using a flexible JSON schema.
 
 ---
 
-## 2. Athena profiling methodology
+## 2. Scraper Data Structure (Bronze)
 
-Repeatable SQL lives in `scripts/athena/bronze_profiling.sql`. Use workgroup `flights-exploration-dev`, database `flights_raw_dev`, and query results prefix `s3://flights-pipeline-logs-dev/athena-results/` (from Terraform).
+The current scraper produces a unified JSON structure mapped to the Bronze layer:
 
-Queries cover:
+| Field | Type | Description |
+|-------|------|-------------|
+| `status` | boolean | Request success flag |
+| `message` | string | Status message (e.g., "Success") |
+| `timestamp` | bigint | Unix epoch milliseconds of ingestion |
+| `api_timestamp` | string | ISO-8601 timestamp from the source |
+| `data.itineraries` | array | List of flight options |
 
-1. **Volume:** `COUNT(*)` over `bronze_flights`.
-2. **Partitions:** `GROUP BY year, month, day` to verify expected Hive layout.
-3. **Root nulls:** `status`, `message`, `api_timestamp`, `data`.
-4. **Array emptiness:** `cardinality` on `data.itineraries.topFlights` and `otherFlights`.
-5. **Critical fields on cataloged structs:** `UNNEST` of `topFlights` / `otherFlights` for `price` and `booking_token`.
+### 2.1 Itinerary Detail (Nested)
 
----
-
-## 3. Nested structures & Glue catalog vs raw JSON
-
-### 3.1 Arrays that require flattening in Spark
-
-| Location | Structure | Silver intent |
-|----------|-----------|----------------|
-| `data.itineraries.topFlights` | array of itinerary options | Explode to one row per **itinerary option**; join to legs |
-| `data.itineraries.otherFlights` | array of itinerary options | Same as above (secondary ranking bucket) |
-| Each itinerary → `flights` | array of **legs/segments** | **Explode** to one row per segment (not in current Glue struct) |
-| Each leg → `departure_airport` / `arrival_airport` | nested objects | Flatten to codes + times |
-| `layovers` | array (nullable) | Optional detail table or columns on itinerary grain |
-| `data.priceHistory.history` | array of time series | Optional analytics; separate from core itinerary facts |
-
-Athena can **UNNEST** `topFlights` / `otherFlights` only for fields **declared** in Glue. **Leg-level** profiling must use **Spark on raw JSON** (or widen the Glue `struct` / store `data` as JSON string) until the catalog matches the API.
-
-### 3.2 Observed Glue `data` struct (truncated)
-
-The Terraform-defined schema intentionally starts narrow (`terraform/modules/athena_glue/main.tf`). Declared itinerary fields include `price`, `departure_time`, `arrival_time`, `stops`, `booking_token`, `airline_logo`, `self_transfer` — **not** `flights`, `duration`, etc.
+Each element in `data.itineraries` contains:
+- `price`: bigint (e.g., 169)
+- `stops`: bigint (0, 1, 2...)
+- `departure_time`: string (ISO-8601)
+- `arrival_time`: string (ISO-8601)
+- `duration`: struct with `raw` (minutes) and `text` ("5h 53m")
+- `flights`: array of **legs/segments**
+- `bags`: struct with `carry_on` and `checked`
+- `carbon_emissions`: struct with `CO2e` and `typical_for_this_route`
+- `self_transfer`: boolean
 
 ---
 
-## 4. Silver layer schema mapping (target)
+## 3. Silver Layer Schema Mapping (Target)
 
-Naming follows project conventions: **`fact_*`** for measurable events, dimensions as needed. Types are indicative; implement in Spark with explicit casts.
+The Silver layer will normalize the nested scraper data into flat Parquet tables.
 
-### 4.1 `fact_flight_search_run` (optional, one row per Bronze file)
+### 3.1 `fact_flight_itinerary`
+Grain: One row per itinerary option.
 
-| Silver column | Bronze / source |
-|----------------|-----------------|
-| `ingest_date` | Partition `year`, `month`, `day` |
-| `api_timestamp` | `api_timestamp` (normalize to `timestamp`) |
-| `request_success` | `status` |
-| `message` | `message` |
-| `source_bucket_key` | Derived from ingest metadata or path |
-| `bronze_file_path` | Full S3 URI (Spark `input_file_name` or path columns) |
+| Silver Column | Source (JSON) | Type |
+|---------------|---------------|------|
+| `itinerary_id` | Surrogate (Hash of flights + times) | string |
+| `price` | `price` | decimal(10,2) |
+| `departure_time` | `departure_time` | timestamp |
+| `arrival_time` | `arrival_time` | timestamp |
+| `total_duration_mins`| `duration.raw` | int |
+| `stops` | `stops` | int |
+| `is_self_transfer` | `self_transfer` | boolean |
+| `carry_on_bags` | `bags.carry_on` | int |
+| `checked_bags` | `bags.checked` | int |
+| `co2_emissions` | `carbon_emissions.CO2e` | bigint |
+| `ingest_timestamp` | `timestamp` | timestamp |
 
-### 4.2 `fact_flight_itinerary` (one row per itinerary option)
+### 3.2 `fact_flight_leg`
+Grain: One row per segment within an itinerary.
 
-Grain: one row per element of `topFlights` ∪ `otherFlights` after tagging list source.
-
-| Silver column | Bronze / source |
-|----------------|-----------------|
-| `itinerary_key` | Surrogate: e.g. `sha256(booking_token \|\| bucket \|\| key)` or stable UUID in job |
-| `booking_token` | `booking_token` |
-| `list_source` | Literal `topFlights` or `otherFlights` |
-| `price` | `price` → `decimal` / `bigint` per currency rules |
-| `departure_time` | Parse string → `timestamp` (timezone-aware policy) |
-| `arrival_time` | Parse string → `timestamp` |
-| `stops` | `stops` |
-| `self_transfer` | `self_transfer` |
-| `airline_logo` | `airline_logo` (optional) |
-| `total_duration_minutes` | `duration.raw` from JSON (Spark) |
-| `layovers_json` or normalized | `layovers` array from JSON |
-| `bags_*`, `carbon_*`, `delay_*` | From JSON when needed |
-
-### 4.3 `fact_flight_leg` (one row per segment)
-
-Grain: explode `flights` inside each itinerary row.
-
-| Silver column | Bronze / source |
-|----------------|-----------------|
-| `itinerary_key` | Join key from parent itinerary row |
-| `leg_sequence` | `posexplode` index (1-based) |
-| `departure_airport_code` | `departure_airport.airport_code` |
-| `arrival_airport_code` | `arrival_airport.airport_code` |
-| `departure_time` | Parse `departure_airport.time` |
-| `arrival_time` | Parse `arrival_airport.time` |
-| `leg_duration_minutes` | `duration.raw` |
-| `airline` | `airline` |
-| `flight_number` | `flight_number` |
-| `aircraft` | `aircraft` |
-| `seat`, `legroom` | As needed |
-| `extensions` | Array → string or child table |
-
-### 4.4 `fact_route_price_history` (optional)
-
-| Silver column | Bronze / source |
-|----------------|-----------------|
-| `search_run_id` / `route_key` | Keys tying to search run |
-| `history_ts` | `data.priceHistory.history[].time` |
-| `price_value` | `data.priceHistory.history[].value` |
-| `summary_*` | `data.priceHistory.summary.*` |
+| Silver Column | Source (JSON) | Type |
+|---------------|---------------|------|
+| `itinerary_id` | Join key to parent | string |
+| `leg_index` | Array index (0-based) | int |
+| `departure_airport` | `flights[].departure_airport.airport_code` | string |
+| `arrival_airport` | `flights[].arrival_airport.airport_code` | string |
+| `departure_time` | `flights[].departure_airport.time` | timestamp |
+| `arrival_time` | `flights[].arrival_airport.time` | timestamp |
+| `airline` | `flights[].airline` | string |
+| `flight_number` | `flights[].flight_number` | string |
+| `aircraft` | `flights[].aircraft` | string |
+| `travel_class` | `flights[].seat` | string |
 
 ---
 
-## 5. Definition of done (Task 3.2)
+## 4. Data Quality Rules (for Task 3.3)
 
-- [x] Athena queries executed for counts, partitions, root nulls, and exploded itinerary-level `price` / `booking_token` checks (results in §1).
-- [x] Nested arrays and Spark flattening strategy documented (§3–§4).
-- [x] Silver mapping from raw JSON to normalized tables documented (§4).
-- [x] This file committed at `docs/data_profiling_report.md`.
-
----
-
-## 6. Follow-ups
-
-- **Evolve Glue JSON schema** (or add a `raw_json` string column) if Athena must profile leg-level fields without Spark.
-- **Task 3.3** (data quality rules): build on §1 and add duplicate checks on `booking_token`, price sanity, and partition completeness over time.
+1. **Price Sanity**: `price` must be > 0.
+2. **Time Sequence**: `arrival_time` must be > `departure_time`.
+3. **Airport Codes**: `departure_airport` and `arrival_airport` must be 3-character IATA codes.
+4. **Completeness**: Every itinerary must have at least one leg in the `flights` array.
+5. **Deduplication**: Use a hash of all legs (airline + flight_number + time) to identify unique itineraries across search runs.
