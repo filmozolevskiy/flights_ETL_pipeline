@@ -1,0 +1,1346 @@
+[
+  {
+    "price": 169,
+    "airlines": [
+      "JetBlue"
+    ],
+    "airline_codes": [
+      "B6"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T06:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T08:53:00"
+        },
+        "duration": 353,
+        "plane_type": "Airbus A320",
+        "airline_code": "B6",
+        "flight_number": "B6123",
+        "travel_class": "Economy",
+        "operating_airline": "JetBlue",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 407000
+    },
+    "total_duration": 353,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "typical",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 169,
+    "airlines": [
+      "American"
+    ],
+    "airline_codes": [
+      "AA"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T06:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T09:17:00"
+        },
+        "duration": 377,
+        "plane_type": "Airbus A321 (Sharklets)",
+        "airline_code": "AA",
+        "flight_number": "AA171",
+        "travel_class": "Economy",
+        "operating_airline": "American",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 543000
+    },
+    "total_duration": 377,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "high",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 169,
+    "airlines": [
+      "American"
+    ],
+    "airline_codes": [
+      "AA"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T07:05:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T10:22:00"
+        },
+        "duration": 377,
+        "plane_type": "Airbus A321neo",
+        "airline_code": "AA",
+        "flight_number": "AA1",
+        "travel_class": "Economy",
+        "operating_airline": "American",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 543000
+    },
+    "total_duration": 377,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "high",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 169,
+    "airlines": [
+      "JetBlue"
+    ],
+    "airline_codes": [
+      "B6"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T07:30:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T10:26:00"
+        },
+        "duration": 356,
+        "plane_type": "Airbus A320",
+        "airline_code": "B6",
+        "flight_number": "B6223",
+        "travel_class": "Economy",
+        "operating_airline": "JetBlue",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 405000
+    },
+    "total_duration": 356,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "typical",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 169,
+    "airlines": [
+      "American"
+    ],
+    "airline_codes": [
+      "AA"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T08:05:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T11:22:00"
+        },
+        "duration": 377,
+        "plane_type": "Boeing 777",
+        "airline_code": "AA",
+        "flight_number": "AA255",
+        "travel_class": "Economy",
+        "operating_airline": "American",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 316000
+    },
+    "total_duration": 377,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "low",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 169,
+    "airlines": [
+      "JetBlue"
+    ],
+    "airline_codes": [
+      "B6"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T08:29:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T11:25:00"
+        },
+        "duration": 356,
+        "plane_type": "Airbus A320",
+        "airline_code": "B6",
+        "flight_number": "B6323",
+        "travel_class": "Economy",
+        "operating_airline": "JetBlue",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 407000
+    },
+    "total_duration": 356,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "typical",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 169,
+    "airlines": [
+      "JetBlue"
+    ],
+    "airline_codes": [
+      "B6"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T09:45:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T12:53:00"
+        },
+        "duration": 368,
+        "plane_type": "Airbus A320",
+        "airline_code": "B6",
+        "flight_number": "B6523",
+        "travel_class": "Economy",
+        "operating_airline": "JetBlue",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 407000
+    },
+    "total_duration": 368,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "typical",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 169,
+    "airlines": [
+      "JetBlue"
+    ],
+    "airline_codes": [
+      "B6"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T16:16:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T19:25:00"
+        },
+        "duration": 369,
+        "plane_type": "Airbus A320",
+        "airline_code": "B6",
+        "flight_number": "B61023",
+        "travel_class": "Economy",
+        "operating_airline": "JetBlue",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 405000
+    },
+    "total_duration": 369,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "typical",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 169,
+    "airlines": [
+      "JetBlue"
+    ],
+    "airline_codes": [
+      "B6"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T20:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T23:13:00"
+        },
+        "duration": 373,
+        "plane_type": "Airbus A320",
+        "airline_code": "B6",
+        "flight_number": "B61223",
+        "travel_class": "Economy",
+        "operating_airline": "JetBlue",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 407000
+    },
+    "total_duration": 373,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "typical",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 169,
+    "airlines": [
+      "American"
+    ],
+    "airline_codes": [
+      "AA"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T21:30:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-16T00:56:00"
+        },
+        "duration": 386,
+        "plane_type": "Airbus A321 (Sharklets)",
+        "airline_code": "AA",
+        "flight_number": "AA300",
+        "travel_class": "Economy",
+        "operating_airline": "American",
+        "overnight": true,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 543000
+    },
+    "total_duration": 386,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "high",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 169,
+    "airlines": [
+      "JetBlue"
+    ],
+    "airline_codes": [
+      "B6"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T21:40:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-16T00:52:00"
+        },
+        "duration": 372,
+        "plane_type": "Airbus A320",
+        "airline_code": "B6",
+        "flight_number": "B6923",
+        "travel_class": "Economy",
+        "operating_airline": "JetBlue",
+        "overnight": true,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 407000
+    },
+    "total_duration": 372,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "typical",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 189,
+    "airlines": [
+      "JetBlue"
+    ],
+    "airline_codes": [
+      "B6"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T13:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T15:59:00"
+        },
+        "duration": 359,
+        "plane_type": "Airbus A320",
+        "airline_code": "B6",
+        "flight_number": "B6423",
+        "travel_class": "Economy",
+        "operating_airline": "JetBlue",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 407000
+    },
+    "total_duration": 359,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "typical",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 189,
+    "airlines": [
+      "Delta"
+    ],
+    "airline_codes": [
+      "DL"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T16:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T19:09:00"
+        },
+        "duration": 369,
+        "plane_type": "Airbus A330",
+        "airline_code": "DL",
+        "flight_number": "DL353",
+        "travel_class": "Economy",
+        "operating_airline": "Delta",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 259000
+    },
+    "total_duration": 369,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "low",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 189,
+    "airlines": [
+      "JetBlue"
+    ],
+    "airline_codes": [
+      "B6"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T17:50:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T21:00:00"
+        },
+        "duration": 370,
+        "plane_type": "Airbus A320",
+        "airline_code": "B6",
+        "flight_number": "B6823",
+        "travel_class": "Economy",
+        "operating_airline": "JetBlue",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 405000
+    },
+    "total_duration": 370,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "typical",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 189,
+    "airlines": [
+      "Delta"
+    ],
+    "airline_codes": [
+      "DL"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T20:25:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T23:41:00"
+        },
+        "duration": 376,
+        "plane_type": "Boeing 767",
+        "airline_code": "DL",
+        "flight_number": "DL752",
+        "travel_class": "Economy",
+        "operating_airline": "Delta",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 224000
+    },
+    "total_duration": 376,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "low",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 219,
+    "airlines": [
+      "Delta"
+    ],
+    "airline_codes": [
+      "DL"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T17:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T20:15:00"
+        },
+        "duration": 375,
+        "plane_type": "Boeing 767",
+        "airline_code": "DL",
+        "flight_number": "DL771",
+        "travel_class": "Economy",
+        "operating_airline": "Delta",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 224000
+    },
+    "total_duration": 375,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "low",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 244,
+    "airlines": [
+      "Delta"
+    ],
+    "airline_codes": [
+      "DL"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T08:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T10:55:00"
+        },
+        "duration": 355,
+        "plane_type": "Airbus A330-900neo",
+        "airline_code": "DL",
+        "flight_number": "DL713",
+        "travel_class": "Economy",
+        "operating_airline": "Delta",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 251000
+    },
+    "total_duration": 355,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "low",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 244,
+    "airlines": [
+      "Delta"
+    ],
+    "airline_codes": [
+      "DL"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T13:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T16:27:00"
+        },
+        "duration": 387,
+        "plane_type": "Boeing 767",
+        "airline_code": "DL",
+        "flight_number": "DL701",
+        "travel_class": "Economy",
+        "operating_airline": "Delta",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 238000
+    },
+    "total_duration": 387,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "low",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 244,
+    "airlines": [
+      "Delta"
+    ],
+    "airline_codes": [
+      "DL"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T14:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T17:02:00"
+        },
+        "duration": 362,
+        "plane_type": "Boeing 767",
+        "airline_code": "DL",
+        "flight_number": "DL747",
+        "travel_class": "Economy",
+        "operating_airline": "Delta",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 224000
+    },
+    "total_duration": 362,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "low",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 274,
+    "airlines": [
+      "Delta"
+    ],
+    "airline_codes": [
+      "DL"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T11:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T13:54:00"
+        },
+        "duration": 354,
+        "plane_type": "Boeing 767",
+        "airline_code": "DL",
+        "flight_number": "DL767",
+        "travel_class": "Economy",
+        "operating_airline": "Delta",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 238000
+    },
+    "total_duration": 354,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "low",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 274,
+    "airlines": [
+      "American"
+    ],
+    "airline_codes": [
+      "AA"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T20:30:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T23:56:00"
+        },
+        "duration": 386,
+        "plane_type": "Airbus A321 (Sharklets)",
+        "airline_code": "AA",
+        "flight_number": "AA117",
+        "travel_class": "Economy",
+        "operating_airline": "American",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 543000
+    },
+    "total_duration": 386,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "high",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 334,
+    "airlines": [
+      "JetBlue"
+    ],
+    "airline_codes": [
+      "B6"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T11:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T14:06:00"
+        },
+        "duration": 366,
+        "plane_type": "Airbus A320",
+        "airline_code": "B6",
+        "flight_number": "B61123",
+        "travel_class": "Economy",
+        "operating_airline": "JetBlue",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 407000
+    },
+    "total_duration": 366,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "typical",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 334,
+    "airlines": [
+      "American"
+    ],
+    "airline_codes": [
+      "AA"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T17:29:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T20:58:00"
+        },
+        "duration": 389,
+        "plane_type": "Airbus A321 (Sharklets)",
+        "airline_code": "AA",
+        "flight_number": "AA302",
+        "travel_class": "Economy",
+        "operating_airline": "American",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 543000
+    },
+    "total_duration": 389,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "high",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 349,
+    "airlines": [
+      "Delta"
+    ],
+    "airline_codes": [
+      "DL"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T07:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T09:55:00"
+        },
+        "duration": 355,
+        "plane_type": "Boeing 767",
+        "airline_code": "DL",
+        "flight_number": "DL742",
+        "travel_class": "Economy",
+        "operating_airline": "Delta",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 238000
+    },
+    "total_duration": 355,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "low",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 349,
+    "airlines": [
+      "Delta"
+    ],
+    "airline_codes": [
+      "DL"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T09:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T12:00:00"
+        },
+        "duration": 360,
+        "plane_type": "Boeing 767",
+        "airline_code": "DL",
+        "flight_number": "DL773",
+        "travel_class": "Economy",
+        "operating_airline": "Delta",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 238000
+    },
+    "total_duration": 360,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "low",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 349,
+    "airlines": [
+      "American"
+    ],
+    "airline_codes": [
+      "AA"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T11:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T14:12:00"
+        },
+        "duration": 372,
+        "plane_type": "Airbus A321 (Sharklets)",
+        "airline_code": "AA",
+        "flight_number": "AA3",
+        "travel_class": "Economy",
+        "operating_airline": "American",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 543000
+    },
+    "total_duration": 372,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "high",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 478,
+    "airlines": [
+      "American"
+    ],
+    "airline_codes": [
+      "AA"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T15:30:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T18:50:00"
+        },
+        "duration": 380,
+        "plane_type": "Airbus A321 (Sharklets)",
+        "airline_code": "AA",
+        "flight_number": "AA341",
+        "travel_class": "Economy",
+        "operating_airline": "American",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 316000
+    },
+    "total_duration": 380,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "low",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  },
+  {
+    "price": 479,
+    "airlines": [
+      "Delta"
+    ],
+    "airline_codes": [
+      "DL"
+    ],
+    "flights": [
+      {
+        "from_airport": {
+          "name": "John F. Kennedy International Airport",
+          "code": "JFK"
+        },
+        "to_airport": {
+          "name": "Los Angeles International Airport",
+          "code": "LAX"
+        },
+        "departure": {
+          "timestamp": "2026-06-15T19:00:00"
+        },
+        "arrival": {
+          "timestamp": "2026-06-15T22:19:00"
+        },
+        "duration": 379,
+        "plane_type": "Boeing 767",
+        "airline_code": "DL",
+        "flight_number": "DL707",
+        "travel_class": "Economy",
+        "operating_airline": "Delta",
+        "overnight": false,
+        "layover_duration": null,
+        "airport_change": false
+      }
+    ],
+    "carbon": {
+      "typical_on_route": 368000,
+      "emission": 238000
+    },
+    "total_duration": 379,
+    "stops": 0,
+    "self_transfer": false,
+    "price_trend": "low",
+    "baggage": {
+      "carry_on": 1,
+      "checked_bag": 1
+    }
+  }
+]
