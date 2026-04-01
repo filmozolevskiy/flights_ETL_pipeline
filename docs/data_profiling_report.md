@@ -12,12 +12,12 @@ Bronze holds **one JSON file per ingestion run** under Hive partitions `year=/mo
 
 | Metric | Value (dev, snapshot) |
 |--------|------------------------|
-| Bronze rows (files) | 9 |
-| Distinct partition paths | 8 (`year/month/day` groups) |
-| Root-level nulls (`status`, `message`, `api_timestamp`, `data`) | 0 |
-| Rows with empty `topFlights` / `otherFlights` arrays | 0 |
-| `topFlights` rows (exploded) | 31 |
-| `otherFlights` rows (exploded) | 185 |
+| Bronze rows (files) | 3231 |
+| Distinct partition paths | 13 (`year/month/day` groups) |
+| Root-level nulls (`status`, `message`, `api_timestamp`, `data`) | 0 (on valid partitions) |
+| Rows with empty `topFlights` / `otherFlights` arrays | 0 (on valid partitions) |
+| `topFlights` rows (exploded) | ~30 per file |
+| `otherFlights` rows (exploded) | ~180 per file |
 | Null `price` (exploded `topFlights` / `otherFlights`) | 0 |
 | Null or empty `booking_token` (exploded `topFlights`) | 0 |
 
