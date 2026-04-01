@@ -1,14 +1,13 @@
 import os
 import sys
 import logging
-from datetime import datetime, timedelta
 
 # Add workspace root to sys.path
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if project_root not in sys.path:
     sys.path.append(project_root)
 
-from src.ingestion.extract_flights import extract_and_upload
+from src.ingestion.extract_flights import extract_and_upload  # noqa: E402
 
 # Configure logging
 logging.basicConfig(
