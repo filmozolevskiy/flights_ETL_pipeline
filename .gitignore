@@ -164,8 +164,5 @@ _override.tf.json
 .DS_Store
 Thumbs.db
 
-# project documentation (exclude build artifacts only; keep .md docs)
-/docs
-
 # Postman environment files (may contain API keys)
 *.postman_environment.json
