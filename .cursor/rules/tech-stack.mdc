@@ -1,0 +1,29 @@
+---
+description: Overview of the project tech stack, directory structure, and development patterns.
+globs: "**/*"
+---
+# Tech Stack & Architecture
+
+## 1. Core Stack
+- **Language**: Python / SQL
+- **Data Source**: RapidAPI (Google Flights API)
+- **Infrastructure**: Terraform (AWS)
+- **Data Lake**: Amazon S3
+- **Compute**: AWS EMR (Spark)
+- **Orchestration**: Apache Airflow
+- **Data Warehouse**: Snowflake
+- **CI/CD**: GitHub Actions
+
+## 2. Directory Structure
+- `scripts/`: Utility scripts and setup tools.
+- `terraform/`: Infrastructure as Code (AWS provider).
+- `docs/`: Project documentation (PRDs, architecture diagrams).
+- `src/`: Source code for ETL pipelines (Spark/Python).
+- `tests/`: Test suite (unit and integration).
+- `dags/`: Airflow DAG definitions.
+
+## 3. Development Patterns
+- Use environment variables for configuration.
+- Implement robust logging and error handling.
+- Ensure idempotency in ETL processes.
+- Follow AWS best practices for security (IAM roles, S3 bucket policies).

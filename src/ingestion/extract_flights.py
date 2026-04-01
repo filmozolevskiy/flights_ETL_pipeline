@@ -2,29 +2,26 @@
 Extract flight data using fast-flights scraper with Bright Data and upload to Bronze S3.
 """
 
+import json
+import logging
+import os
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
+
+import boto3
+from dotenv import load_dotenv
 
 # Add project root to sys.path to ensure local fast_flights package is found
 project_root = str(Path(__file__).parents[2])
 if project_root not in sys.path:
     sys.path.append(project_root)
 
-import json
-import logging
-import os
-from datetime import datetime, timezone
-from typing import Any
-from dataclasses import asdict
-
-from dotenv import load_dotenv
-import boto3
-
 # Import local scraper
-from fast_flights import FlightQuery, Passengers, create_query, get_flights
-from fast_flights.model import Flights, SingleFlight
-from fast_flights.integrations.bright_data import BrightData
-from fast_flights.types import SeatType, TripType
+from fast_flights import FlightQuery, Passengers, create_query, get_flights  # noqa: E402
+from fast_flights.model import Flights  # noqa: E402
+from fast_flights.integrations.bright_data import BrightData  # noqa: E402
+from fast_flights.types import SeatType, TripType  # noqa: E402
 
 load_dotenv()
 
@@ -33,6 +30,9 @@ logger = logging.getLogger(__name__)
 BRONZE_BUCKET = os.getenv("BRONZE_BUCKET", "flights-bronze-raw-dev")
 BRIGHT_DATA_API_KEY = os.getenv("BRIGHT_DATA_API_KEY")
 BRIGHT_DATA_SERP_ZONE = os.getenv("BRIGHT_DATA_SERP_ZONE", "serp_api1")
+
+def get_bright_data_api_key():
+    return os.getenv("BRIGHT_DATA_API_KEY")
 
 def fetch_flights_with_scraper(
     departure_id: str,
@@ -45,7 +45,8 @@ def fetch_flights_with_scraper(
     """
     Fetch flight search results using the fast-flights scraper and Bright Data.
     """
-    if not BRIGHT_DATA_API_KEY:
+    api_key = get_bright_data_api_key()
+    if not api_key:
         raise ValueError("BRIGHT_DATA_API_KEY must be set in environment")
 
     # 1. Create the query
@@ -60,7 +61,7 @@ def fetch_flights_with_scraper(
 
     # 2. Initialize Bright Data integration
     bd_integration = BrightData(
-        api_key=BRIGHT_DATA_API_KEY,
+        api_key=api_key,
         zone=BRIGHT_DATA_SERP_ZONE
     )
 

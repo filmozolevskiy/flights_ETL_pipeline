@@ -56,8 +56,7 @@ resource "aws_glue_catalog_table" "bronze_flights" {
       serialization_library = "org.openx.data.jsonserde.JsonSerDe"
 
       parameters = {
-        "ignore.malformed"      = "true"
-        "mapping.api_timestamp" = "timestamp"
+        "ignore.malformed" = "true"
       }
     }
 
@@ -77,9 +76,9 @@ resource "aws_glue_catalog_table" "bronze_flights" {
     }
 
     columns {
-      name    = "data"
-      type    = "struct<itineraries:struct<topFlights:array<struct<price:bigint,departure_time:string,arrival_time:string,stops:bigint,booking_token:string,airline_logo:string,self_transfer:boolean>>,otherFlights:array<struct<price:bigint,departure_time:string,arrival_time:string,stops:bigint,booking_token:string,airline_logo:string,self_transfer:boolean>>>>"
-      comment = "Flight results; schema from API response (Task 3.2 will refine)"
+      name = "data"
+      type = "string"
+      comment = "Raw JSON data string (Task 3.2 will refine into structured schema)"
     }
   }
 }

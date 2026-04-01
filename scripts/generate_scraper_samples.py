@@ -1,21 +1,20 @@
-import sys
-from pathlib import Path
 import json
 import logging
 import os
-from datetime import datetime, timezone
-from typing import Any
+import sys
 from dataclasses import asdict
+from pathlib import Path
+
+from dotenv import load_dotenv
 
 # Add project root to sys.path
 project_root = str(Path(__file__).parents[1])
 if project_root not in sys.path:
     sys.path.append(project_root)
 
-from dotenv import load_dotenv
-from fast_flights import FlightQuery, Passengers, create_query
-from fast_flights.fetcher import fetch_flights_html, parse
-from fast_flights.integrations.bright_data import BrightData
+from fast_flights import FlightQuery, Passengers, create_query  # noqa: E402
+from fast_flights.fetcher import fetch_flights_html, parse  # noqa: E402
+from fast_flights.integrations.bright_data import BrightData  # noqa: E402
 
 load_dotenv()
 
